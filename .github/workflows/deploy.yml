@@ -1,0 +1,41 @@
+name: CI & Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Syntax-check server (CommonJS)
+        run: node --check server/server.js
+      - name: Syntax-check frontend (ES modules)
+        run: |
+          for f in public/js/*.js; do
+            echo "checking $f"
+            node --input-type=module --check - < "$f"
+          done
+
+  deploy:
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Cloudflare Pages (static demo, in-browser mock data)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          preCommands: wrangler pages project create packet-highway --production-branch=main || true
+          command: pages deploy public --project-name=packet-highway
