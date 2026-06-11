@@ -5,6 +5,13 @@ Every packet is a vehicle: protocol picks the car type and color, packet size
 sets its speed and length. Inbound traffic drives toward the camera, outbound
 drives away.
 
+![Packet Highway — night](docs/demo-night.png)
+
+Live capture on a 16-lane highway: cars follow the vehicle ahead and change
+lanes to overtake. Day theme included:
+
+![Packet Highway — day](docs/demo-day.png)
+
 ## Quick start
 
 ```sh
