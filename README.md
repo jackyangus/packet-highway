@@ -20,7 +20,19 @@ falls back to **mock mode** (orange MOCK badge instead of green LIVE).
 
 - Install [Wireshark/tshark](https://tshark.dev/) — `brew install wireshark` on macOS.
 - Capture needs packet-capture privileges:
-  - **macOS**: install the ChmodBPF helper that ships with Wireshark, or run `sudo npm start`.
+  - **macOS** — the BPF devices (`/dev/bpf*`) are root-only by default, and the
+    Homebrew *formula* does not fix that. Two options:
+
+    ```sh
+    # right now, resets on reboot
+    sudo chmod o+rw /dev/bpf*
+
+    # permanent: ChmodBPF opens the BPF devices on every boot
+    brew install --cask wireshark-chmodbpf
+    ```
+
+    ChmodBPF works through the `access_bpf` group — log out and back in once
+    after installing it. (Running `sudo npm start` also works in a pinch.)
   - **Linux**: `sudo setcap cap_net_raw,cap_net_admin=eip $(which dumpcap)` or run with sudo.
 - Pick interfaces with `PH_IFACE=en0,utun1500 npm start` (comma-separated).
   Defaults: on macOS the default-route interface **plus any active VPN/proxy
