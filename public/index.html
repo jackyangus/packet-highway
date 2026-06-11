@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Packet Highway</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%23070d1f'/><rect x='3' y='9' width='10' height='4' rx='1.5' fill='%233b82f6'/><circle cx='5' cy='13' r='1.4' fill='%23cfe0ff'/><circle cx='11' cy='13' r='1.4' fill='%23cfe0ff'/></svg>" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<!-- top-left: dashboard -->
+<div class="panel" id="dashboard">
+  <div class="panel-title">
+    PACKET HIGHWAY
+    <span class="badge" id="badge"><span class="dot"></span><span id="badge-text">CONNECTING</span></span>
+    <span class="toolbar">
+      <button class="tool-btn" id="btn-lang">EN</button>
+      <button class="tool-btn" id="btn-theme">☀</button>
+    </span>
+  </div>
+  <div class="stat-row"><span class="stat-label" id="l-pps">packets/s</span><span class="stat-value" id="stat-pps">0</span></div>
+  <div class="stat-row"><span class="stat-label" id="l-traffic">traffic/s</span><span class="stat-value" id="stat-kbps">0 KB</span></div>
+  <div class="stat-row"><span class="stat-label" id="l-cars">on the road</span><span class="stat-value" id="stat-cars">0</span></div>
+</div>
+
+<!-- top-right: legend -->
+<div class="panel" id="legend">
+  <div class="panel-title" id="legend-title">WHO'S DRIVING</div>
+  <div id="legend-rows"></div>
+  <div class="legend-hint" id="legend-hint">click to filter</div>
+</div>
+
+<!-- bottom-left: log -->
+<div class="panel" id="log">
+  <div class="panel-title" id="log-title">PASSING TRAFFIC</div>
+  <div id="log-rows"></div>
+</div>
+
+<!-- bottom-right: hint -->
+<div class="panel" id="hint">drag to orbit · scroll to zoom · click a vehicle for details</div>
+
+<!-- hover tooltip -->
+<div id="tooltip" class="hidden">
+  <div id="tt-title"></div>
+  <div id="tt-route"></div>
+  <div id="tt-meta"></div>
+</div>
+
+<!-- packet detail card -->
+<div class="panel hidden" id="detail">
+  <div class="panel-title"><span id="detail-title">PACKET</span><button id="detail-close">×</button></div>
+  <div class="stat-row"><span class="stat-label" id="l-proto">protocol</span><span class="stat-value" id="d-proto"></span></div>
+  <div class="stat-row"><span class="stat-label" id="l-dir">direction</span><span class="stat-value" id="d-dir"></span></div>
+  <div class="stat-row"><span class="stat-label" id="l-len">size</span><span class="stat-value" id="d-len"></span></div>
+  <div class="stat-row"><span class="stat-label" id="l-src">source</span><span class="stat-value" id="d-src"></span></div>
+  <div class="stat-row"><span class="stat-label" id="l-dst">destination</span><span class="stat-value" id="d-dst"></span></div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
