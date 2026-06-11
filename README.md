@@ -5,6 +5,9 @@ Every packet is a vehicle: protocol picks the car type and color, packet size
 sets its speed and length. Inbound traffic drives toward the camera, outbound
 drives away.
 
+**▶ Live demo: [highway.qooeo.com](https://highway.qooeo.com)** — static build
+with simulated traffic (run locally with tshark for your real packets).
+
 ![Packet Highway — night](docs/demo-night.png)
 
 Live capture on a 16-lane highway: cars follow the vehicle ahead and change
