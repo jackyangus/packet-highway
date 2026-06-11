@@ -53,7 +53,9 @@ html, body {
   margin-bottom: 8px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  min-width: 0;
 }
 
 .toolbar { margin-left: auto; display: inline-flex; gap: 6px; }
