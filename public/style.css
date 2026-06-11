@@ -67,8 +67,12 @@ html, body {
   padding: 2px 7px;
   cursor: pointer;
   letter-spacing: 0;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
 .tool-btn:hover { border-color: var(--title); }
+#btn-github svg { display: block; }
 
 #dashboard { top: 16px; left: 16px; min-width: 230px; }
 
