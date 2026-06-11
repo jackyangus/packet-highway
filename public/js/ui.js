@@ -191,3 +191,15 @@ export function hideDetail() {
 export function initDetailClose() {
   $('detail-close').addEventListener('click', hideDetail);
 }
+
+export function initCollapse({ collapseByDefault = false } = {}) {
+  for (const btn of document.querySelectorAll('.collapse-btn')) {
+    const panel = $(btn.dataset.panel);
+    const apply = (collapsed) => {
+      panel.classList.toggle('collapsed', collapsed);
+      btn.textContent = collapsed ? '▸' : '▾';
+    };
+    btn.addEventListener('click', () => apply(!panel.classList.contains('collapsed')));
+    if (collapseByDefault) apply(true);
+  }
+}

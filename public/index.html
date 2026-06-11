@@ -41,15 +41,25 @@
 
 <!-- top-right: legend -->
 <div class="panel" id="legend">
-  <div class="panel-title" id="legend-title">WHO'S DRIVING</div>
-  <div id="legend-rows"></div>
-  <div class="legend-hint" id="legend-hint">click to filter</div>
+  <div class="panel-title">
+    <span id="legend-title">WHO'S DRIVING</span>
+    <button class="collapse-btn" data-panel="legend" aria-label="collapse">▾</button>
+  </div>
+  <div class="panel-body">
+    <div id="legend-rows"></div>
+    <div class="legend-hint" id="legend-hint">click to filter</div>
+  </div>
 </div>
 
 <!-- bottom-left: log -->
 <div class="panel" id="log">
-  <div class="panel-title" id="log-title">PASSING TRAFFIC</div>
-  <div id="log-rows"></div>
+  <div class="panel-title">
+    <span id="log-title">PASSING TRAFFIC</span>
+    <button class="collapse-btn" data-panel="log" aria-label="collapse">▾</button>
+  </div>
+  <div class="panel-body">
+    <div id="log-rows"></div>
+  </div>
 </div>
 
 <!-- bottom-right: hint -->

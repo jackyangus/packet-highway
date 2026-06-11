@@ -74,6 +74,21 @@ html, body {
 .tool-btn:hover { border-color: var(--title); }
 #btn-github svg { display: block; }
 
+.collapse-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--title);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0 2px;
+  cursor: pointer;
+}
+.collapse-btn:hover { color: var(--value); }
+.panel.collapsed .panel-body { display: none; }
+.panel.collapsed .panel-title { margin-bottom: 0; }
+
 #dashboard { top: 16px; left: 16px; min-width: 230px; }
 
 .badge {
@@ -189,3 +204,17 @@ html, body {
 #tt-title { font-weight: 700; letter-spacing: 1px; }
 #tt-route { color: var(--value); font-variant-numeric: tabular-nums; }
 #tt-meta { color: var(--muted); }
+
+/* ---------------- mobile ---------------- */
+@media (max-width: 700px) {
+  .panel { padding: 8px 10px; font-size: 11px; border-radius: 8px; }
+  .panel-title { font-size: 11px; letter-spacing: 1px; margin-bottom: 6px; gap: 6px; }
+  #dashboard { top: 10px; left: 10px; min-width: 0; max-width: 46vw; }
+  #dashboard .stat-row { gap: 8px; }
+  #legend { top: 10px; right: 10px; max-width: 48vw; }
+  .legend-vehicle { min-width: 0; flex: 1; }
+  #log { bottom: 10px; left: 10px; width: min(220px, 60vw); }
+  #log-rows { max-height: 110px; }
+  #hint { display: none; }
+  #detail { min-width: 0; width: min(330px, 92vw); }
+}

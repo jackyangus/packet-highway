@@ -15,6 +15,8 @@ ui.initLegend((proto, enabled) => {
   if (!enabled && fleet) fleet.despawnAll(proto);
 });
 ui.initDetailClose();
+// small screens: legend and traffic log start collapsed so the road is visible
+ui.initCollapse({ collapseByDefault: window.matchMedia('(max-width: 700px)').matches });
 
 // ------------------------------------------------------- lang & theme
 let theme = localStorage.getItem('ph-theme') || 'dark';
@@ -106,6 +108,7 @@ if (renderer) {
   // hover: raycast at most every 50 ms, skipped while orbiting
   let lastHoverAt = 0;
   canvas.addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'touch') return; // touch devices: tap opens the card
     if (e.buttons !== 0) {
       ui.hideTooltip();
       return;
